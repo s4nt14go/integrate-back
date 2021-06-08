@@ -16,9 +16,9 @@ provider:
   logRetentionInDays: 14
 
 functions:
-  hello:
-    handler: handler.hello
+  exchange-code:
+    handler: exchange-code.handler
     events:
       - http:
-          path: hello
-          method: get
+          path: exchange-code
+          method: post
