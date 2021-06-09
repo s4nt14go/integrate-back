@@ -1,8 +1,7 @@
 {
   "name": "integrate",
   "version": "0.1.0",
-  "description": "A TypeScript starter for Serverless Framework",
-  "main": "handler.js",
+  "description": "",
   "scripts": {
     "test": "serverless-bundle test",
     "sls": "sls"
@@ -10,16 +9,16 @@
   "author": "",
   "license": "MIT",
   "repository": {
-    "type": "git",
-    "url": "https://github.com/AnomalyInnovations/serverless-typescript-starter.git"
+    "type": "git"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.64",
     "@types/jest": "^26.0.14",
     "serverless": "^2.45.0",
     "serverless-bundle": "3.2.1",
-    "serverless-dotenv-plugin": "^3.0.0",
-    "serverless-offline": "^6.8.0"
+    "serverless-iam-roles-per-function": "^3.2.0",
+    "serverless-offline": "^6.8.0",
+    "serverless-pseudo-parameters": "^2.5.0"
   },
   "dependencies": {
     "civic-sip-api": "^1.2.1"

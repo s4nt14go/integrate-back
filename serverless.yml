@@ -6,7 +6,8 @@ package:
 plugins:
   - serverless-bundle # Package our functions with Webpack
   - serverless-offline
-  - serverless-dotenv-plugin # Load .env as environment variables
+  - serverless-iam-roles-per-function
+  - serverless-pseudo-parameters
 
 provider:
   name: aws
@@ -14,6 +15,13 @@ provider:
   stage: dev
   region: us-east-1
   logRetentionInDays: 14
+  environment:
+    serviceName: ${self:service}
+    stage: ${self:custom.stage}
+    AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
 
 functions:
   exchange-code:
@@ -22,3 +30,7 @@ functions:
       - http:
           path: exchange-code
           method: post
+    iamRoleStatements:
+      - Effect: Allow
+        Action: ssm:GetParameters
+        Resource: arn:aws:ssm:#{AWS::Region}:#{AWS::AccountId}:parameter/${self:service}/${self:custom.stage}/*
